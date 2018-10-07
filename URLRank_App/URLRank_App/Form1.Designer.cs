@@ -42,10 +42,11 @@
             // 
             this.btn_Search.Location = new System.Drawing.Point(346, 280);
             this.btn_Search.Name = "btn_Search";
-            this.btn_Search.Size = new System.Drawing.Size(218, 35);
+            this.btn_Search.Size = new System.Drawing.Size(218, 46);
             this.btn_Search.TabIndex = 0;
             this.btn_Search.Text = "Search Google";
             this.btn_Search.UseVisualStyleBackColor = true;
+            this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
             // 
             // tb_SearchString
             // 
