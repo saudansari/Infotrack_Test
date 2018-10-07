@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Net.Http;
+using System;
 
 namespace URLRank_App.Models
 {
@@ -11,11 +12,17 @@ namespace URLRank_App.Models
         {
             var url = Build_url(search_text);
 
+            try { 
             using (var httpclient = new HttpClient())
             {
                 var response = await httpclient.GetAsync(url);
                 var content = await response.Content.ReadAsStringAsync();
                 return content;
+            }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception($"HTTP Exception:{ex.Message}");
             }
         }
 

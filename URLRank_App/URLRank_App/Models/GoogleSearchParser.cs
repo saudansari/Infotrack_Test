@@ -13,19 +13,26 @@ namespace URLRank_App.Models
                 return null;
 
             var i = 0;
-            while((i = search_result.IndexOf("<h3 class=\"r\"", i)) != -1)
-            {
-                var j = 0;
-                var remaining = search_result.Substring(i);
-                while ((j = remaining.IndexOf("</h3>", j)) != -1)
+            try
+            { 
+                while((i = search_result.IndexOf("<h3 class=\"r\"", i)) != -1)
                 {
-                    var substr = remaining.Substring(0, j + 5);
-                    results.Add(substr);
-                    break;
+                    var j = 0;
+                    var remaining = search_result.Substring(i);
+                    while ((j = remaining.IndexOf("</h3>", j)) != -1)
+                    {
+                        var substr = remaining.Substring(0, j + 5);
+                        results.Add(substr);
+                        break;
+                    }
+                    i++;
                 }
-                i++;
+                return results;
             }
-            return results;
+            catch(Exception ex)
+            {
+                throw new Exception($"Comparison Failed {ex.Message}");
+            }
         }
 
 
